@@ -71,8 +71,9 @@ remove:
 ################################
 #### Distribution build
 
-DDD := $(shell date "+%Y%m%d_%H%M")
-ZIPFILE := $(shell $(PINFO) -g name ).$(shell $(PINFO) -g buildNumber ).$(DDD).zip
+RELEASE_TIMESTAMP ?= $(shell date "+%Y%m%d_%H%M")
+RELEASE_VERSION ?= $(shell $(PINFO) -g buildNumber )
+ZIPFILE := $(shell $(PINFO) -g name ).$(RELEASE_VERSION).$(RELEASE_TIMESTAMP).zip
 dist:
 	zip -rp ../$(ZIPFILE) '$(GAME).pdx'
 	@echo "  $(APPNAME) is compressed into $(ZIPFILE)"
