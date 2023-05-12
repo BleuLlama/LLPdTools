@@ -6,6 +6,7 @@
 
 SDK = $(shell egrep '^\s*SDKRoot' ~/.Playdate/config | head -n 1 | cut -c9-)
 PSELECT = $(SDK)/../playdate-select/playdate-select.sh
+PINFO = $(SDK)/../playdate-select/pdxinfo-extract.sh
 SDKBIN=$(SDK)/bin
 GAME=$(notdir $(CURDIR))
 SIM=Playdate Simulator
@@ -66,3 +67,14 @@ remove:
 	rm -rf  '$(SDK)/Disk/Games/$(GAME).pdx'
 .PHONY: remove
 
+
+################################
+#### Distribution build
+
+DDD := $(shell date "+%Y%m%d_%H%M")
+ZIPFILE := $(shell $(PINFO) -g name ).$(shell $(PINFO) -g buildNumber ).$(DDD).zip
+dist:
+	zip -rp ../$(ZIPFILE) '$(GAME).pdx'
+	@echo "  $(APPNAME) is compressed into $(ZIPFILE)"
+
+.PHONY: dist
