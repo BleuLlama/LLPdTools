@@ -1,7 +1,11 @@
-# playdate-select
+# LLPdTools
 
-playdate-select is a simple shell script to swap around Playdate SDK versions
-Made by Scott Lawrence - yorgle@gmail.com
+This is a collection of tools that I've made to help with development
+for the PlayDate console platform.
+
+- **playdate-select** lets you select the active Playdate SDK version
+- **pdxinfo-extract** returns the values out of a project's PDXINFO file
+- **Makefile.Lua.mk** a makefile to be included that provides build, test, and distribution targets
 
 
 # Initial Setup
@@ -47,7 +51,7 @@ The script itself looks at your ~/.Playdate/config for the base name
 of the SDK.
 
 
-# Makefile
+# Makefile.Lua.mk
 
 The included makefile, 'Makefile.Lua.mk' allows you to build your lua 
 project with one SDK and test on another.  In your project, next 
@@ -58,3 +62,8 @@ to your Source directory, create a file named "Makefile" with the contents:
 And now, in that directory, if you just type "make" it will build for 1.x 
 and run it in the 2.x simulator.  You can of course override it, copy it,
 whatever... or don't use it at all. :D
+
+
+# pdxinfo-extract.sh
+
+This tool is used by the makefile to extract the app name and the build/version number to be used for the 'dist' task, building the zip file.
