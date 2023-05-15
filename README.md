@@ -3,8 +3,8 @@
 This is a collection of tools that I've made to help with development
 for the PlayDate console platform.
 
-- **playdate-select** lets you select the active Playdate SDK version
-- **pdxinfo-extract** returns the values out of a project's PDXINFO file
+- **playdate-select.sh** lets you select the active Playdate SDK version
+- **pdxinfo-extract.sh** returns the values out of a project's PDXINFO file
 - **Makefile.Lua.mk** a makefile to be included that provides build, test, and distribution targets
 
 
