@@ -4,9 +4,11 @@
 ################################
 #### definitions...
 
+
 SDK = $(shell egrep '^\s*SDKRoot' ~/.Playdate/config | head -n 1 | cut -c9-)
-PSELECT = $(SDK)/../playdate-select/playdate-select.sh
-PINFO = $(SDK)/../playdate-select/pdxinfo-extract.sh
+TOOLDIR = $(SDK)/../LLPdTools
+PSELECT = $(TOOLDIR)/playdate-select.sh
+PINFO = $(TOOLDIR)/pdxinfo-extract.sh
 SDKBIN=$(SDK)/bin
 GAME=$(notdir $(CURDIR))
 SIM=Playdate Simulator
@@ -15,7 +17,10 @@ SIM=Playdate Simulator
 ################################
 #### General Build targets
 
-build: sdk1 clean compile sdk1 run
+build: clean compile run
+.PHONY: build
+
+build-legacy: sdk1 clean compile sdk1 run
 .PHONY: build
 
 run: open
@@ -77,5 +82,7 @@ ZIPFILE := $(shell $(PINFO) -g name ).$(RELEASE_VERSION).$(RELEASE_TIMESTAMP).zi
 dist:
 	zip -rp ../$(ZIPFILE) '$(GAME).pdx'
 	@echo "  $(APPNAME) is compressed into $(ZIPFILE)"
-
 .PHONY: dist
+
+release: dist
+.PHONY: release
