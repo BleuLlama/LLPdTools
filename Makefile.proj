@@ -1,0 +1,4 @@
+
+TOOLDIR := ../LLPdTools
+include $(TOOLDIR)/Makefile.Lua.mk
+
